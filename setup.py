@@ -17,7 +17,7 @@ setup(
     version=version,
     author='Rodney Osodo',
     author_email='blackd0t@protonmail.com',
-    description='Un Official Sendyit Python wrapper',
+    description='Un-Official Sendyit Python wrapper',
     long_description=long_description,
     long_description_content_type='text/markdown',
     license='MIT',
