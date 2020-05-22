@@ -1,0 +1,4 @@
+deploy:
+  provider: pypi
+  user: ${{ secrets.PYPI_USERNAME }}
+  password: ${{ secrets.PYPI_PASSWORD }}
