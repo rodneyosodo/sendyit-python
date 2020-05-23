@@ -4,10 +4,9 @@
 on:
   release:
     types: [created, published]
-  
-  # push:
-  #   tags:        
-  #     - v*
+  push:
+    tags:        
+      - v*
 
 name: Upload Python Package to PYPI
 
