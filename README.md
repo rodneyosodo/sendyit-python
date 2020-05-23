@@ -1,7 +1,9 @@
 # sendit-python
 Python wrapper for Sendy's API. https://www.sendyit.com/
 
-
+![Testing](https://github.com/0x6f736f646f/sendyit-python/workflows/Testing/badge.svg)
+![Creating a Release](https://github.com/0x6f736f646f/sendyit-python/workflows/Creating%20a%20Release/badge.svg)
+![Upload Python Package](https://github.com/0x6f736f646f/sendyit-python/workflows/Upload%20Python%20Package/badge.svg)
 # Installation
 ```sh
 pip install pysendyit
