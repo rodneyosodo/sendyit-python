@@ -128,10 +128,9 @@ class SendyException(Exception):
     """
     General exception throw
     """
-    def __init__(self, message, http_response):
+    def __init__(self, message):
         super(SendyException, self).__init__()
         self.message = message
-        self.status = http_response.status
 
     @property
     def get_message(self):
