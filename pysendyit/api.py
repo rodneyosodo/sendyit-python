@@ -1,6 +1,7 @@
 import json
 import requests
 from pysendyit.errors import *
+from pysendyit.check import check_url, check_api_key, check_api_username
 
 
 class Api:
@@ -15,15 +16,9 @@ class Api:
         :param api_username: api username for the application provided by Sendy
         :param base_url: base url for the api application
         """
-        self.api_key = api_key
-        self.api_username = api_username
-        self.base_url = base_url
-        if self.api_key == "" or self.api_key is None:
-            raise SendyException("API KEY is required")
-        if self.api_username == "" or self.api_username is None:
-            raise SendyException("API Username is required")
-        if self.base_url == "" or self.base_url is None:
-            raise SendyException("Base url is required")
+        self.api_key = check_api_key(api_key=api_key)
+        self.api_username = check_api_username(api_username=api_username)
+        self.base_url = check_url(path=base_url)
 
     @staticmethod
     def check_status(content, response):
@@ -54,22 +49,6 @@ class Api:
         if response.status_code >= 500:
             raise ServerException(content, response)
 
-    @staticmethod
-    def _format_url(path):
-        """
-        Adds a "/" at the end if it does not exist.
-        It also checks the path is the same as the ones available
-        :param path:
-        :type path: str
-        :return: str
-        """
-        if path[-1] != "/":
-            path = path + "/"
-        if path == "https://apitest.sendyit.com/v1/" or path == "https://api.sendyit.com/v1/":
-            return path
-        else:
-            raise SendyException("The Base url is not availble")
-
     def _build_url(self, path):
         """
         Build the url to send to the server
@@ -77,7 +56,7 @@ class Api:
         :type path: str
         :return:
         """
-        url = self._format_url(path=self.base_url)
+        url = check_url(path=self.base_url)
         self.base_url = url + "#" + path
 
     def make_request(self, url_parameter=None, body=None):
