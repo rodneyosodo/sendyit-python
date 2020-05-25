@@ -20,18 +20,11 @@ def check_url(path):
             raise SendyException("The Base url is unavailable or invalid")
 
 
-def check_api_key(api_key):
-    if api_key == "" or api_key is None:
-        raise SendyException("API KEY provided is empty")
+def check_api_details(api_details):
+    if api_details == "" or api_details is None:
+        raise SendyException("API detail provided is empty")
     else:
-        return api_key
-
-
-def check_api_username(api_username):
-    if api_username == "" or api_username is None:
-        raise SendyException("API Username provides is empty")
-    else:
-        return api_username
+        return api_details
 
 
 def check_location_details(data):
@@ -51,7 +44,7 @@ def check_location_details(data):
 
 def check_person_details(data):
     """
-    Prepares data of recepient
+    Prepares person's data
     :param data:
     :return:
     """

@@ -1,7 +1,10 @@
 import json
 import requests
-from pysendyit.errors import *
-from pysendyit.check import check_url, check_api_key, check_api_username
+from pysendyit.errors import (MalformedRequestException, ServerException,
+                              UnAuthorisedException, NotFoundException,
+                              UnAcceptableContentException,
+                              RateLimitException, InvalidRequestException)
+from pysendyit.check import check_url, check_api_details
 
 
 class Api:
@@ -16,14 +19,14 @@ class Api:
         :param api_username: api username for the application provided by Sendy
         :param base_url: base url for the api application
         """
-        self.api_key = check_api_key(api_key=api_key)
-        self.api_username = check_api_username(api_username=api_username)
+        self.api_key = check_api_details(api_details=api_key)
+        self.api_username = check_api_details(api_details=api_username)
         self.base_url = check_url(path=base_url)
 
     @staticmethod
     def check_status(content, response):
         """
-        Checks the reponse that is returned for known exceptions and errors
+        Checks the response that is returned for known exceptions and errors
         :param content:
         :param response:
         :return: str
