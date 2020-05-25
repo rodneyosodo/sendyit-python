@@ -158,7 +158,9 @@ class Sendy(Api):
         }
         return self.make_request(url_parameter=endpoint, body=values)
 
-    def request_multi_pickup_delivery(self):
+    def request_multi_pickup_delivery(self, rider_phone, from_details_one, from_details_two,
+                                      to_details, recepient,
+                                      sender, delivery_details, vendor_type=1):
         """
         This call is used to create new multi pickup delivery request,
         obtaining rates , estimated time of arrival and
@@ -168,7 +170,24 @@ class Sendy(Api):
         In this request pass an array with multiple destination.
         Multi-Pickup orders cannot be placed alongside multi-delivery orders.
         """
-        pass
+        command = "request"
+        endpoint = "##requestmultipickup"
+        values = {
+            "command": command,
+            "data": {
+                "api_key": self.api_key,
+                "api_username": self.api_username,
+                "vendor_type": vendor_type,
+                "rider_phone": rider_phone,
+                "from": [check_location_details(from_details_one),
+                         check_location_details(from_details_two)],
+                "to": [check_location_details(to_details)],
+                "recepient": check_person_details(recepient),
+                "sender": check_person_details(sender),
+                "delivery_details": check_delivery_details(delivery_details)
+            }
+        }
+        return self.make_request(url_parameter=endpoint, body=values)
 
     def complete_delivery(self, delivery_details, order_no="AA23MS878", request_token_id="request_token_id"):
         """
