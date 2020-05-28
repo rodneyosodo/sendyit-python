@@ -9,8 +9,6 @@ def check_url(path):
     :param path:
     :return:
     """
-    if path[-1] != "/":
-        path = path + "/"
     if path == "" or path is None:
         raise SendyException("Base url given is empty")
     else:
