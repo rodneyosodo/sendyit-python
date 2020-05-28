@@ -13,9 +13,12 @@ class Sendy(Api):
         :param api_username: api_username of the request eg: 'mysendyusername'.
         :param base_url:
         """
-        self.api_key = check_api_details(api_details=api_key)
-        self.api_username = check_api_details(api_details=api_username)
-        self.base_url = check_url(base_url)
+        api_key = check_api_details(api_key)
+        api_username = check_api_details(api_username)
+        base_url = check_url(base_url)
+        self.api_key = api_key
+        self.api_username = api_username
+        self.base_url = base_url
         super(Sendy, self).__init__(api_key, api_username, base_url)
 
     @staticmethod
