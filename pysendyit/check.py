@@ -102,6 +102,8 @@ def check_delivery_details(data):
     """
     if data["pick_up_date"] == "" or data["pick_up_date"] is None:
         raise SendyException("pick_up_date given is empty")
+    if data["collect_payment"] == "" or data["collect_payment"] is None:
+        raise SendyException("collect_payment given is empty")
     data["collect_payment"] = check_collect_payment(data["collect_payment"])
     if data["carrier_type"] == "" or data["carrier_type"] is None:
         raise SendyException("carrier_type given is empty")
@@ -121,6 +123,8 @@ def check_delivery_details(data):
         raise SendyException("express given is empty")
     if data["skew"] == "" or data["skew"] is None:
         raise SendyException("skew given is empty")
+    if data["package_size"] == "" or data["package_size"] is None:
+        raise SendyException("package_size given is empty")
     if len(data['package_size']) > 1:
         for i in range(len(data["package_size"])):
             data['package_size'][i] = check_package_size(data=data['package_size'][i])
