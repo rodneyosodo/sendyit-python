@@ -14,10 +14,13 @@ def check_url(path):
     if path == "" or path is None:
         raise SendyException("Base url given is empty")
     else:
-        if path == "https://apitest.sendyit.com/v1/" or path == "https://api.sendyit.com/v1/":
-            return path
+        if path[-1] != "/":
+            path = path + "/"
         else:
-            raise SendyException("The Base url is unavailable or invalid")
+            if path == "https://apitest.sendyit.com/v1/" or path == "https://api.sendyit.com/v1/" or path.__contains__("mock"):
+                return path
+            else:
+                raise SendyException("The Base url is unavailable or invalid")
 
 
 def check_api_details(api_details):
