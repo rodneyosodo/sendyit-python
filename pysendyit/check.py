@@ -14,7 +14,6 @@ def check_url(path):
     else:
         if path[-1] != "/":
             path = path + "/"
-        else:
         if path == "https://apitest.sendyit.com/v1/" or path == "https://api.sendyit.com/v1/" or path.__contains__("mock"):
             return path
         else:
