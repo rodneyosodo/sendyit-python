@@ -67,6 +67,6 @@ class Api:
         headers = {
             'Content-Type': 'application/json'
         }
-        response = requests.post(self.base_url, data=body, headers=headers)
+        response = requests.post(self.base_url, data=json.loads(json.dumps(body)), headers=headers)
         self.check_status(response=response, content=response.content)
         return json.loads(response.content.decode('utf-8'))
