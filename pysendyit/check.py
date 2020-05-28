@@ -128,6 +128,6 @@ def check_delivery_details(data):
     if len(data['package_size']) > 1:
         for i in range(len(data["package_size"])):
             data['package_size'][i] = check_package_size(data=data['package_size'][i])
-    else:
-        data["package_size"] = check_package_size(data["package_size"][0])
+    elif len(data['package_size']) == 1:
+        data["package_size"][0] = check_package_size(data["package_size"][0])
     return data
