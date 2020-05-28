@@ -19,9 +19,9 @@ class Api:
         :param api_username: api username for the application provided by Sendy
         :param base_url: base url for the api application
         """
-        self.api_key = check_api_details(api_details=api_key)
-        self.api_username = check_api_details(api_details=api_username)
-        self.base_url = check_url(path=base_url)
+        self.api_key = api_key
+        self.api_username = api_username
+        self.base_url = base_url
 
     @staticmethod
     def check_status(content, response):
@@ -59,14 +59,16 @@ class Api:
         :type path: str
         :return:
         """
-        url = check_url(path=self.base_url)
-        self.base_url = url + "#" + path
+        print(self.base_url)
+        self.base_url = self.base_url + "#" + path
 
     def make_request(self, url_parameter=None, body=None):
         self._build_url(path=url_parameter)
         headers = {
             'Content-Type': 'application/json'
         }
+        print("Making req: {}".format(self.base_url))
         response = requests.post(self.base_url, data=json.loads(json.dumps(body)), headers=headers)
         self.check_status(response=response, content=response.content)
+        print("Base_url: {}\nContent: {}".format(self.base_url, response.url))
         return json.loads(response.content.decode('utf-8'))
