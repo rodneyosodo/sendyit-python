@@ -12,7 +12,7 @@ before_script:
   - export API_USERNAME={{ secrets.API_USERNAME }}
 
 script:
-  - flake8 api --ignore E402
+  # - flake8 api --ignore E402
   - nosetests --with-coverage --cover-erase --cover-package=pysendyit
 
 after_success:
