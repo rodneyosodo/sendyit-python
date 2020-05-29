@@ -33,12 +33,18 @@ class Sendy(Api):
         :param description: description of the pick up location or destination
         """
         if reference == "from" or reference == "to":
-            return check_location_details({
-                "{}_name".format(reference): name,
-                "{}_lat".format(reference): latitude,
-                "{}_long".format(reference): longitude,
-                "{}_description".format(reference): description
+            location_data = check_location_details({
+                "name": name,
+                "latitude": latitude,
+                "longitude": longitude,
+                "description": description
             })
+            return {
+                "{}_name".format(reference): location_data['name'],
+                "{}_lat".format(reference): location_data["latitude"],
+                "{}_long".format(reference): location_data["longitude"],
+                "{}_description".format(reference): location_data["description"]
+            }
         else:
             raise SendyException("Invalid location reference")
 
