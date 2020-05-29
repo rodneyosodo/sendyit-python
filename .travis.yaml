@@ -1,4 +1,19 @@
-deploy:
-  provider: pypi
-  user: ${{ secrets.PYPI_USERNAME }}
-  password: ${{ secrets.PYPI_PASSWORD }}
+language: python
+
+python:
+  - "3.6.7"
+
+install:
+  - pip install -r requirements.txt
+
+before_script:
+  - export BASE_URL={{ secrets.BASE_URL }}
+  - export API_KEY={{ secrets.API_KEY }}
+  - export API_USERNAME={{ secrets.API_USERNAME }}
+
+script:
+  - flake8 api --ignore E402
+  - nosetests --with-coverage --cover-erase --cover-package=pysendyit
+
+after_success:
+  - coveralls
