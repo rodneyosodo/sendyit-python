@@ -7,9 +7,9 @@ install:
   - pip install -r requirements.txt
 
 before_script:
-  - export BASE_URL={{ secrets.BASE_URL }}
-  - export API_KEY={{ secrets.API_KEY }}
-  - export API_USERNAME={{ secrets.API_USERNAME }}
+  - export BASE_URL="$BASE_URL"
+  - export API_KEY="$API_KEY"
+  - export API_USERNAME=$API_USERNAME
 
 script:
   # - flake8 api --ignore E402
