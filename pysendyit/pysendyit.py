@@ -59,12 +59,18 @@ class Sendy(Api):
         :param notes: notes of the recepient or sender
         """
         if reference == "recepient" or reference == "sender":
-            return check_person_details({
-                "{}_name".format("recepient"): name,
-                "{}_phone".format("recepient"): phone,
-                "{}_email".format("recepient"): email,
-                "{}_notes".format("recepient"): notes
+            person_data = check_person_details({
+                "name": name,
+                "phone": phone,
+                "email": email,
+                "notes": notes
             })
+            return {
+                "{}_name".format("recepient"): person_data["name"],
+                "{}_phone".format("recepient"): person_data["phone"],
+                "{}_email".format("recepient"): person_data["email"],
+                "{}_notes".format("recepient"): person_data["notes"]
+            }
         else:
             raise SendyException("Invalid reference for person. Give 'sender' or 'recepient'")
 
