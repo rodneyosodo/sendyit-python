@@ -6,8 +6,8 @@ def check_url(path: str) -> str:
     Checks the url
     Adds a "/" at the end if it does not exist.
     It also checks the path is the same as the ones available
-    :param path:
-    :return:
+    :param path: The url endpoint
+    :return: path
     """
     if path == "" or path is None:
         raise SendyException("Base url given is empty")
@@ -21,6 +21,11 @@ def check_url(path: str) -> str:
 
 
 def check_api_details(api_details: str) -> str:
+    """
+    Checks the API_KEY and API_USERNAME if they are empty
+    :param api_details: api_key or api_username or the request
+    :return: api_key or api_username
+    """
     if api_details == "" or api_details is None:
         raise SendyException("API detail provided is empty")
     else:
@@ -29,7 +34,13 @@ def check_api_details(api_details: str) -> str:
 
 def check_location_details(data: dict) -> dict:
     """
-    Checks the from location details
+    Checks the from location details if they are empty
+    data['name'] name of the pick up location
+    data['latitude'] latitude of the pick up location or destination
+    data['longitude'] longitude of the pick up location or destination
+    data['description']description of the pick up location or destination
+    :param data:
+    :return:
     """
     if data["name"] == "" or data["name"] is None:
         raise SendyException("Name given is empty")
@@ -44,9 +55,13 @@ def check_location_details(data: dict) -> dict:
 
 def check_person_details(data: dict) -> dict:
     """
-    Prepares person's data
+    Checks person's data if it is empty
+    data["name"] name of the recepient or sender
+    data["phone"] phone number of the recepient or sender
+    data["email"] email of the recepient or sender
+    data["notes"] notes of the recepient or sender
     :param data:
-    :return:
+    :return: data
     """
     if data["name"] == "" or data["name"] is None:
         raise SendyException("Name given is empty")
@@ -61,7 +76,12 @@ def check_person_details(data: dict) -> dict:
 
 def check_package_size(data: dict) -> dict:
     """
-    Prepares data package
+    Checks the package data if it is empty
+    data["weight"] weight of the package
+    data["height"] height of the package
+    data["width"] width of the package
+    data["length"] notes of the package
+    data["item_name"] item_name of the package
     :param data:
     :return:
     """
@@ -80,7 +100,10 @@ def check_package_size(data: dict) -> dict:
 
 def check_collect_payment(data: dict) -> dict:
     """
-    Prepares collect payment
+    checks the collect payment data if it has an empty field
+    data["status"] status of the payment data
+    data["pay_method"] pay_method of the payment data
+    data["amount"] amount of the payment data
     :param data:
     :return:
     """
