@@ -14,7 +14,9 @@ def check_url(path: str) -> str:
     else:
         if path[-1] != "/":
             path = path + "/"
-        if path == "https://apitest.sendyit.com/v1/" or path == "https://api.sendyit.com/v1/" or path.__contains__("mock"):
+        if (path == "https://apitest.sendyit.com/v1/") or (
+                path == "https://api.sendyit.com/v1/") or (
+                path.__contains__("mock")):
             return path
         else:
             raise SendyException("The Base url is unavailable or invalid")
