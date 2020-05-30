@@ -80,7 +80,7 @@ class SendyTest(unittest.TestCase):
         self.assertIsNotNone(self.sendy.request_multi_pickup_delivery("0712345678", self.location_data, self.location_data, self.location_data, self.person_data, self.person_data, self.delivery_data))
 
     def test_complete_delivery(self):
-        self.assertIsNotNone(self.sendy.complete_delivery(self.delivery_data))
+        self.assertIsNotNone(self.sendy.complete_delivery(self.delivery_data, order_no="AA2395374", request_token_id="request_token_id"))
 
     def test_track_or_cancel_delivery(self):
         self.assertIsNotNone(self.sendy.track_or_cancel_delivery(command="track", order_no="AA2395374", request_token_id="request_token_id"))
