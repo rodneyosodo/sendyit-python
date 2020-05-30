@@ -81,6 +81,8 @@ class SendyTest(unittest.TestCase):
     def test_request_multi_pickup_delivery(self):
         self.assertIsNotNone(self.sendy.request_multi_pickup_delivery("0712345678", self.location_data, self.location_data, self.location_data, self.person_data, self.person_data, self.delivery_data))
 
+    def test_complete_delivery(self):
+        self.assertIsNotNone(self.sendy.complete_delivery(self.delivery_data))
 
 if __name__ == '__main__':
    unittest.main()
