@@ -4,7 +4,6 @@ from pysendyit.errors import (MalformedRequestException, ServerException,
                               UnAuthorisedException, NotFoundException,
                               UnAcceptableContentException,
                               RateLimitException, InvalidRequestException)
-from pysendyit.check import check_url, check_api_details
 
 
 class Api:
