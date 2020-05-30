@@ -1,5 +1,5 @@
-# sendit-python
-Python wrapper for Sendy's API. https://www.sendyit.com/
+# Unofficial Sendy python API Wrapper
+The wrapper provides convenient access to the [Sendy Logistics API](https://www.sendyit.com/) from applications written in server-side python.
 
 ![Testing](https://github.com/0x6f736f646f/sendyit-python/workflows/Testing/badge.svg)
 ![Creating a Release](https://github.com/0x6f736f646f/sendyit-python/workflows/Creating%20a%20Release/badge.svg)
@@ -7,21 +7,28 @@ Python wrapper for Sendy's API. https://www.sendyit.com/
 [![Coverage Status](https://coveralls.io/repos/github/0x6f736f646f/sendyit-python/badge.svg?branch=master)](https://coveralls.io/github/0x6f736f646f/sendyit-python?branch=master)
 [![Build Status](https://travis-ci.com/0x6f736f646f/sendyit-python.svg?branch=master)](https://travis-ci.com/0x6f736f646f/sendyit-python)
 [![Maintainability](https://api.codeclimate.com/v1/badges/6c6702b7007a11eb203f/maintainability)](https://codeclimate.com/github/0x6f736f646f/sendyit-python/maintainability)
-# Installation
+
+## Installation
 ```sh
 pip install pysendyit
 ```
 
-Usage
------
+## Usage
+In order to run the demo, export the the following values to your environment. They can be found/generated at the API Dashboard.
+```bash
+export API_USERNAME="{your-api-username}"
+export API_KEY="{your-api-key}"
+export BASE_URL="{your-base-url}"
+```
+
 ```python
-from pysendyit import Sendy
-s = Sendy(base_url='http://your_sendy_url')
+from pysendyit.pysendyit import Sendy
+import os
 
-# subscription
-s.subscribe(name='John Doe', email='email@to.subscribe', list_id='the_list_id', 
-    custom_field1='custom_value1', custom_value2='custom_value2')
+# Creating an instance of the Sendy Class
+sendy = Sendy(api_username=os.getenv('API_USERNAME'), api_key=os.getenv('API_KEY'), base_url=os.getenv('BASE_URL'))
 
-# unsubscription
-s.unsubscribe(email='email@to.unsubscribe', list_id='the_list_id')
+# Printing response
+print(sendy.track_or_cancel_delivery(command="track", order_no="AA2395374", request_token_id="request_token_id"))
+
 ```
