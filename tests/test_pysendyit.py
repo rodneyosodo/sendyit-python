@@ -84,5 +84,8 @@ class SendyTest(unittest.TestCase):
     def test_complete_delivery(self):
         self.assertIsNotNone(self.sendy.complete_delivery(self.delivery_data))
 
+    def test_track_or_cancel_delivery(self):
+        self.assertIsNotNone(self.sendy.track_or_cancel_delivery(command="track", order_no="AA2395374", request_token_id="request_token_id"))
+
 if __name__ == '__main__':
    unittest.main()
