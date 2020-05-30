@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 import sys
 import os
 
-version = '0.0.17'
+version = '0.1.1'
 
 with open("README.md", "r") as f:
     long_description = f.read()
@@ -25,8 +25,7 @@ setup(
     packages=find_packages(),
     install_requires=['requests'],
     url='https://github.com/0x6f736f646f/sendit-python',
-    # download_url='https://codeload.github.com/AfricasTalkingLtd/africastalking-python/tar.gz/' + version,
-    # download_url='http://pypi.python.org/pypi/pysendy/',
+    download_url='http://pypi.python.org/pypi/pysendy/',
     zip_safe=True,
     py_modules=[],
     keywords='pysendyit sendy wrapper api',
