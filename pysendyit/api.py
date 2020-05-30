@@ -56,7 +56,6 @@ class Api:
         Build the url to send to the server
         :param path: The path for a specific requests
         """
-        print(self.base_url)
         self.base_url = self.base_url + "#" + path
 
     def make_request(self, url_parameter: str, body: dict) -> json:
@@ -73,5 +72,4 @@ class Api:
                                  data=json.loads(json.dumps(body)),
                                  headers=headers)
         self.check_status(response=response, content=response.content)
-        print("Base_url: {}\nContent: {}".format(self.base_url, response.url))
         return json.loads(response.content.decode('utf-8'))
