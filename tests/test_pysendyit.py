@@ -72,6 +72,9 @@ class SendyTest(unittest.TestCase):
     def test_prepare_delivery_details_2(self):
         self.assertIsNotNone(self.sendy.prepare_delivery_details(self.delivery_data['pick_up_date'], self.delivery_data['collect_payment'], self.delivery_data['carrier_type'], self.delivery_data['return'], self.delivery_data['note'], self.delivery_data['note_status'], self.delivery_data['request_type'], self.delivery_data['order_type'], self.delivery_data['ecommerce_order'], self.delivery_data['express'], self.delivery_data['skew'], self.delivery_data['package_size'][0]))
 
+    def test_request_delivery(self):
+        self.assertIsNotNone(self.sendy.request_delivery(self.location_data, self.location_data, self.person_data, self.person_data, self.delivery_data))
+
 
 if __name__ == '__main__':
    unittest.main()
