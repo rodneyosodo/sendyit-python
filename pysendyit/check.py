@@ -1,7 +1,7 @@
 from pysendyit.errors import SendyException
 
 
-def check_url(path):
+def check_url(path: str) -> str:
     """
     Checks the url
     Adds a "/" at the end if it does not exist.
@@ -20,14 +20,14 @@ def check_url(path):
             raise SendyException("The Base url is unavailable or invalid")
 
 
-def check_api_details(api_details):
+def check_api_details(api_details: str) -> str:
     if api_details == "" or api_details is None:
         raise SendyException("API detail provided is empty")
     else:
         return api_details
 
 
-def check_location_details(data):
+def check_location_details(data: dict) -> dict:
     """
     Checks the from location details
     """
@@ -42,7 +42,7 @@ def check_location_details(data):
     return data
 
 
-def check_person_details(data):
+def check_person_details(data: dict) -> dict:
     """
     Prepares person's data
     :param data:
@@ -59,7 +59,7 @@ def check_person_details(data):
     return data
 
 
-def check_package_size(data):
+def check_package_size(data: dict) -> dict:
     """
     Prepares data package
     :param data:
@@ -78,7 +78,7 @@ def check_package_size(data):
     return data
 
 
-def check_collect_payment(data):
+def check_collect_payment(data: dict) -> dict:
     """
     Prepares collect payment
     :param data:
@@ -93,7 +93,7 @@ def check_collect_payment(data):
     return data
 
 
-def check_delivery_details(data):
+def check_delivery_details(data: dict) -> dict:
     """
     Prepares Delivery details
     :param data:
