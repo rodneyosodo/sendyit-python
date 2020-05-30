@@ -54,14 +54,17 @@ class Api:
     def _build_url(self, path: str):
         """
         Build the url to send to the server
-        :param path:
-        :type path: str
-        :return:
+        :param path: The path for a specific requests
         """
         print(self.base_url)
         self.base_url = self.base_url + "#" + path
 
-    def make_request(self, url_parameter=None, body=None):
+    def make_request(self, url_parameter: str, body: dict) -> json:
+        """
+        Makes the API request to the server endpoint
+        :param url_parameter: The path for a specific requests
+        :param body: The request body
+        """
         self._build_url(path=url_parameter)
         headers = {
             'Content-Type': 'application/json'
