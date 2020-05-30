@@ -4,10 +4,9 @@ import os
 from pysendyit.pysendyit import Sendy
 from pysendyit.errors import SendyException
 
-
-api_username=os.getenv('API_USERNAME')
-api_key=os.getenv('API_KEY')
-base_url=os.getenv('BASE_URL')
+api_username = os.getenv('API_USERNAME')
+api_key = os.getenv('API_KEY')
+base_url = os.getenv('BASE_URL')
 
 
 class SendyTest(unittest.TestCase):
@@ -26,9 +25,8 @@ class SendyTest(unittest.TestCase):
             "order_type": "order_type", "ecommerce_order": "ecommerce_order",
             "express": "express", "skew": "skew",
             "package_size": [self.package_size, self.package_size]
-            }
+        }
 
-    
     def test_prepare_location_details_1(self):
         self.assertNotEqual(self.location_data.values(), self.sendy.prepare_location_details("from", self.location_data['name'], self.location_data['latitude'], self.location_data['longitude'], self.location_data['description']).values())
 
@@ -87,5 +85,6 @@ class SendyTest(unittest.TestCase):
     def test_track_or_cancel_delivery(self):
         self.assertIsNotNone(self.sendy.track_or_cancel_delivery(command="track", order_no="AA2395374", request_token_id="request_token_id"))
 
+
 if __name__ == '__main__':
-   unittest.main()
+    unittest.main()
