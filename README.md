@@ -32,3 +32,15 @@ sendy = Sendy(api_username=os.getenv('API_USERNAME'), api_key=os.getenv('API_KEY
 print(sendy.track_or_cancel_delivery(command="track", order_no="AA2395374", request_token_id="request_token_id"))
 
 ```
+
+## Contributing
+
+Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* Sendy Logistics 
