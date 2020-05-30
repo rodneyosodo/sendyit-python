@@ -75,6 +75,9 @@ class SendyTest(unittest.TestCase):
     def test_request_delivery(self):
         self.assertIsNotNone(self.sendy.request_delivery(self.location_data, self.location_data, self.person_data, self.person_data, self.delivery_data))
 
+    def test_reques_multi_destination_delivery(self):
+        self.assertIsNotNone(self.sendy.request_multi_destination_delivery(self.location_data, self.location_data, self.location_data, self.person_data, self.person_data, self.delivery_data))
+
 
 if __name__ == '__main__':
    unittest.main()
