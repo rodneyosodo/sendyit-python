@@ -65,6 +65,13 @@ class SendyTest(unittest.TestCase):
     def test_prepare_collect_payment_2(self):
         self.assertIsNotNone(self.sendy.prepare_collect_payment(self.payment_data['status'], self.payment_data['pay_method'], self.payment_data['amount']))
 
+    def test_prepare_delivery_details_1(self):
+        self.delivery_data['package_size'] = [self.delivery_data['package_size'][0]]
+        self.assertEqual(self.delivery_data, self.sendy.prepare_delivery_details(self.delivery_data['pick_up_date'], self.delivery_data['collect_payment'], self.delivery_data['carrier_type'], self.delivery_data['return'], self.delivery_data['note'], self.delivery_data['note_status'], self.delivery_data['request_type'], self.delivery_data['order_type'], self.delivery_data['ecommerce_order'], self.delivery_data['express'], self.delivery_data['skew'], self.delivery_data['package_size'][0]))
+
+    def test_prepare_delivery_details_2(self):
+        self.assertIsNotNone(self.sendy.prepare_delivery_details(self.delivery_data['pick_up_date'], self.delivery_data['collect_payment'], self.delivery_data['carrier_type'], self.delivery_data['return'], self.delivery_data['note'], self.delivery_data['note_status'], self.delivery_data['request_type'], self.delivery_data['order_type'], self.delivery_data['ecommerce_order'], self.delivery_data['express'], self.delivery_data['skew'], self.delivery_data['package_size'][0]))
+
 
 if __name__ == '__main__':
    unittest.main()
