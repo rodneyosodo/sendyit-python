@@ -97,7 +97,7 @@ class Sendy(Api):
                                        item_name=item_name))
 
     @staticmethod
-    def prepare_collect_payment(status: float, pay_method: float,
+    def prepare_collect_payment(status: bool, pay_method: int,
                                 amount: float) -> dict:
         """
         Prepares data package size
@@ -149,11 +149,11 @@ class Sendy(Api):
                 "api_username": self.api_username,
                 "vendor_type": vendor_type,
                 "rider_phone": "0728561783",
-                "from": check_location_details(from_details),
-                "to": check_location_details(to_details),
-                "recepient": check_person_details(recepient),
-                "sender": check_person_details(sender),
-                "delivery_details": check_delivery_details(delivery_details)
+                "from": from_details,
+                "to": to_details,
+                "recepient": recepient,
+                "sender": sender,
+                "delivery_details": delivery_details
             },
             "request_token_id": request_token_id
         }
