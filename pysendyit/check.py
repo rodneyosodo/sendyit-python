@@ -151,7 +151,9 @@ def check_delivery_details(data: dict) -> dict:
         raise SendyException("package_size given is empty")
     if len(data['package_size']) > 1:
         for i in range(len(data["package_size"])):
-            data['package_size'][i] = check_package_size(data=data['package_size'][i])
+            data['package_size'][i] = check_package_size(
+                data=data['package_size'][i]
+            )
     elif len(data['package_size']) == 1:
         data["package_size"][0] = check_package_size(data["package_size"][0])
     return data
