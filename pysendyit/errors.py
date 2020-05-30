@@ -18,7 +18,8 @@ class BaseSendyException(Exception):
 
 class UnAuthorisedException(BaseSendyException):
     """
-    Exception for requests that are being used without appropriate authorisation
+    Exception for requests that are being used
+    without appropriate authorisation
     """
 
 
@@ -36,7 +37,8 @@ class NotFoundException(BaseSendyException):
 
 class UnAcceptableContentException(BaseSendyException):
     """
-    Thrown if the request being sent has a header for a content type which isn't on the server
+    Thrown if the request being sent has a header
+    for a content type which isn't on the server
     """
 
 
