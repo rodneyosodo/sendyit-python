@@ -11,7 +11,7 @@ class Api:
     Base class to handle making requests and receiving responses
     """
 
-    def __init__(self, api_key, api_username, base_url):
+    def __init__(self, api_key: str, api_username: str, base_url: str):
         """
         Creates and instance of a new Api object
         :param api_key: api key for the application provided by Sendy
@@ -23,7 +23,7 @@ class Api:
         self.base_url = base_url
 
     @staticmethod
-    def check_status(content, response):
+    def check_status(content: str, response):
         """
         Checks the response that is returned for known exceptions and errors
         :param content:
@@ -51,7 +51,7 @@ class Api:
         if response.status_code >= 500:
             raise ServerException(content, response)
 
-    def _build_url(self, path):
+    def _build_url(self, path: str):
         """
         Build the url to send to the server
         :param path:
