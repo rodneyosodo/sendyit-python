@@ -1,8 +1,9 @@
 from pysendyit.api import Api
 from pysendyit.errors import SendyException
 from pysendyit.check import (check_api_details, check_location_details,
-                             check_person_details, check_url, check_package_size,
-                             check_collect_payment, check_delivery_details)
+                             check_person_details, check_url,
+                             check_package_size, check_collect_payment,
+                             check_delivery_details)
 
 
 class Sendy(Api):
@@ -43,13 +44,16 @@ class Sendy(Api):
                 "{}_name".format(reference): location_data['name'],
                 "{}_lat".format(reference): location_data["latitude"],
                 "{}_long".format(reference): location_data["longitude"],
-                "{}_description".format(reference): location_data["description"]
+                "{}_description".format(reference):
+                    location_data["description"]
             }
         else:
             raise SendyException("Invalid location reference")
 
     @staticmethod
-    def prepare_person_details(reference: str, name: str, phone: str, email: str, notes: str) -> dict:
+    def prepare_person_details(reference: str, name: str,
+                               phone: str, email: str,
+                               notes: str) -> dict:
         """
         Prepares data of recepient or sender
         :param reference: Either 'sender' or 'recepient'
@@ -72,10 +76,14 @@ class Sendy(Api):
                 "{}_notes".format("recepient"): person_data["notes"]
             }
         else:
-            raise SendyException("Invalid reference for person. Give 'sender' or 'recepient'")
+            raise SendyException(
+                "Invalid reference for person.Give 'sender' or 'recepient'"
+            )
 
     @staticmethod
-    def prepare_package_size(weight: float, height: float, width: float, length: float, item_name: str) -> dict:
+    def prepare_package_size(weight: float, height: float,
+                             width: float, length: float,
+                             item_name: str) -> dict:
         """
         Prepares data package size
         :param weight: weight of the package
@@ -84,22 +92,30 @@ class Sendy(Api):
         :param length: length of the package
         :param item_name: item_name of the package
         """
-        return check_package_size(dict(weight=weight, height=height, width=width, length=length, item_name=item_name))
+        return check_package_size(dict(weight=weight, height=height,
+                                       width=width, length=length,
+                                       item_name=item_name))
 
     @staticmethod
-    def prepare_collect_payment(status: float, pay_method: float, amount: float) -> dict:
+    def prepare_collect_payment(status: float, pay_method: float,
+                                amount: float) -> dict:
         """
         Prepares data package size
         :param status: weight of the package
         :param pay_method: height of the package
         :param amount: width of the package
         """
-        return check_collect_payment(dict(status=status, pay_method=pay_method, amount=amount))
+        return check_collect_payment(dict(status=status,
+                                          pay_method=pay_method,
+                                          amount=amount))
 
     @staticmethod
-    def prepare_delivery_details(pick_up_date, collect_payment, carrier_type, return_type,
-                                 note, note_status, request_type, order_type, ecommerce_order,
-                                 express, skew, package_size) -> dict:
+    def prepare_delivery_details(pick_up_date: str, collect_payment: dict,
+                                 carrier_type: int, return_type: bool,
+                                 note: str, note_status: bool,
+                                 request_type: str, order_type: str,
+                                 ecommerce_order: bool, express: bool,
+                                 skew: int, package_size: dict) -> dict:
         return check_delivery_details({
             "pick_up_date": pick_up_date,
             "collect_payment": collect_payment,
@@ -115,8 +131,9 @@ class Sendy(Api):
             "package_size": [package_size]
         })
 
-    def request_delivery(self, from_details, to_details, recepient,
-                         sender, delivery_details, vendor_type=1,
+    def request_delivery(self, from_details: dict, to_details: dict,
+                         recepient: dict, sender: dict,
+                         delivery_details: dict, vendor_type=1,
                          request_token_id="request_token_id"):
         """
         This call is used to create new delivery request,
@@ -142,8 +159,11 @@ class Sendy(Api):
         }
         return self.make_request(url_parameter=endpoint, body=values)
 
-    def request_multi_destination_delivery(self, from_details, to_details_first,
-                                           to_details_second, recepient, sender, delivery_details):
+    def request_multi_destination_delivery(self, from_details: dict,
+                                           to_details_first: dict,
+                                           to_details_second: dict,
+                                           recepient: dict, sender: dict,
+                                           delivery_details: dict):
         """
         This call is used to create new multi destination delivery request,
         obtaining rates , estimated time of arrival and
@@ -173,14 +193,17 @@ class Sendy(Api):
         }
         return self.make_request(url_parameter=endpoint, body=values)
 
-    def request_multi_pickup_delivery(self, rider_phone, from_details_one, from_details_two,
-                                      to_details, recepient,
-                                      sender, delivery_details, vendor_type=1):
+    def request_multi_pickup_delivery(self, rider_phone: dict,
+                                      from_details_one: dict,
+                                      from_details_two: dict,
+                                      to_details: dict, recepient: dict,
+                                      sender: dict, delivery_details: dict,
+                                      vendor_type=1):
         """
         This call is used to create new multi pickup delivery request,
         obtaining rates , estimated time of arrival and
         estimated time of delivery between a set of locations.
-        The main difference with the normal delivery is the 
+        The main difference with the normal delivery is the
         number of pickup locations passed , on the from key.
         In this request pass an array with multiple destination.
         Multi-Pickup orders cannot be placed alongside multi-delivery orders.
@@ -204,7 +227,8 @@ class Sendy(Api):
         }
         return self.make_request(url_parameter=endpoint, body=values)
 
-    def complete_delivery(self, delivery_details, order_no="AA23MS878", request_token_id="request_token_id"):
+    def complete_delivery(self, delivery_details: dict,
+                          order_no: str, request_token_id: str):
         """
         If you had earlier requested an order using request_type
         as 'quote' you can use this call to complete your delivery.
@@ -224,9 +248,11 @@ class Sendy(Api):
         }
         return self.make_request(url_parameter=endpoint, body=values)
 
-    def track_or_cancel_delivery(self, command="track", order_no="AA2395374", request_token_id="request_token_id"):
+    def track_or_cancel_delivery(self, command: str,
+                                 order_no: str, request_token_id: str):
         """
-        This call provides you with the ability to cancel current deliveries or track current deliveries.
+        This call provides you with the ability to
+        cancel current deliveries or track current deliveries.
         :param command: Cancel or track the delivery
         :param order_no: status if money is being collected on your behalf
         :param request_token_id: request_token_id of the request
@@ -245,7 +271,8 @@ class Sendy(Api):
         }
         return self.make_request(url_parameter=endpoint, body=values)
 
-    def rider_availability(self, latitude=-1.28869, longitude=36.823363, request_token_id="request_token_id"):
+    def rider_availability(self, latitude: float,
+                           longitude: float, request_token_id: str):
         """
         Provides locations of available riders, vans and trucks
         based on the pick up location or any point of reference.
